@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="load_runner">
+    <xacro:arg name="gripper_model" default="epick_4cups"/>
+    <xacro:arg name="prefix" default=""/>
+
+    <xacro:include filename="$(find robotiq_epick_vaccum_gripper_description)/urdf/epick_gripper.urdf.xacro"/>
+
+    <link name="base_link"/>
+    <xacro:insert_gripper prefix="$(arg prefix)" parent="base_link">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </xacro:insert_gripper>
+</robot>

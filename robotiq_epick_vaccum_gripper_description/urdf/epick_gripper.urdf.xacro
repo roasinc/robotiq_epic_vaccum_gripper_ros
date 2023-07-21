@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="insert_gripper" params="prefix parent *origin">
+        <link name="${prefix}gripper_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robotiq_epick_vaccum_gripper_description/meshes/visual/epick_4cups.dae" scale="1 1 1"/>
+                </geometry>
+            </visual>
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://robotiq_epick_vaccum_gripper_description/meshes/collision/epick_4cups.stl" scale="1 1 1"/>
+                </geometry>
+            </collision>
+            <inertial>
+                <origin xyz="0.010 0.000 0.070" rpy="0 0 0"/>
+                <mass value="67.084"/>
+                <inertia ixx="1.067955" ixy="0.010608" ixz="-0.044928" iyy="2.497383" iyz="-0.000028" izz="3.217104"/>
+            </inertial>
+        </link>
+
+        <joint name="gripper_mount_fixed" type="fixed">
+            <parent link="${parent}"/>
+            <child link="${prefix}gripper_link"/>
+            <xacro:insert_block name="origin"/>
+        </joint>
+
+        <link name="${prefix}gripper_cup1"/>
+        <joint name="${prefix}gripper_cup1_fixed_joint" type="fixed">
+            <parent link="${prefix}gripper_link"/>
+            <child link="${prefix}gripper_cup1"/>
+            <origin xyz="-0.08455 -0.03901 0.1915" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}gripper_cup2"/>
+        <joint name="${prefix}gripper_cup2_fixed_joint" type="fixed">
+            <parent link="${prefix}gripper_link"/>
+            <child link="${prefix}gripper_cup2"/>
+            <origin xyz="0.07494 -0.03901 0.1915" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}gripper_cup3"/>
+        <joint name="${prefix}gripper_cup3_fixed_joint" type="fixed">
+            <parent link="${prefix}gripper_link"/>
+            <child link="${prefix}gripper_cup3"/>
+            <origin xyz="-0.084550 0.04226 0.1915" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}gripper_cup4"/>
+        <joint name="${prefix}gripper_cup4_fixed_joint" type="fixed">
+            <parent link="${prefix}gripper_link"/>
+            <child link="${prefix}gripper_cup4"/>
+            <origin xyz="0.07494 0.04226 0.1915" rpy="0 0 0"/>
+        </joint>
+
+        <link name="${prefix}gripper_tcp"/>
+        <joint name="${prefix}gripper_tcp_fixed_joint" type="fixed">
+            <parent link="${prefix}gripper_link"/>
+            <child link="${prefix}gripper_tcp"/>
+            <origin xyz="0 0 0.1915" rpy="0 0 0"/>
+        </joint>
+    </xacro:macro>
+</robot>
