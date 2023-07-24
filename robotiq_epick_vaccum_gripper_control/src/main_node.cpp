@@ -80,7 +80,6 @@ class RobotiQVaccumGripperNode
         void callback_gripper_command(const control_msgs::GripperCommandConstPtr &msg)
         {
             req_gripper_pos_ = (uint8_t)((1.0 - msg->position) * 100.0);
-            // req_gripper_min_force_ = (uint8_t)(msg->max_effort * 255.0);
         }
 
     private:
